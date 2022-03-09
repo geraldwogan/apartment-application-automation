@@ -1,3 +1,5 @@
 venv/ 
 
 /secret.json
+
+/chromedriver.exe
