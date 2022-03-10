@@ -86,7 +86,7 @@ def getPropertyLink():
 def formCompletion(link):
 
 
-
+    link= 'https://www.daft.ie/for-rent/apartment-whitworth-road-drumcondra-dublin-3/3723347'
     # wait for one second, until page gets fully loaded
 
     data = ['Gerald Wogan', 'geraldwogan@gmail.com', '0879999999', 'Test message']
@@ -96,17 +96,30 @@ def formCompletion(link):
     time.sleep(5)
 
     # Open webpage
-    webbrowser.open('https://www.daft.ie/for-rent/apartment-whitworth-road-drumcondra-dublin-3/3723347')
+    # webbrowser.open(link)
+
+    driver.get(link)
+    time.sleep(5)
+    e = driver.find_elements(By.XPATH, '//button')
+    # e = driver.find_element(By.XPATH, '//button[contains(., "Accept All"]')
+    e[1].click()
 
     time.sleep(5)
 
-    e = driver.find_element(By.XPATH, '//button[text()="Email Agent"]')
-
-    # e = driver.find_element(By.CLASS_NAME("NewButton__StyledButton-yem86a-2 fhElqk"))
-    # email_button = driver.find_element_by_class_name(
-        # "NewButton__StyledButton-yem86a-2 fhElqk")
-
+    e = driver.find_element(By.XPATH, '//button[contains(., "Email Agent")]')
+    print(e)
     e.click()
+
+    time.sleep(2)
+
+
+    e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
+    print(e)
+    e.click()
+
+
+    e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
+
 
     # Use Selenium to fill out web form
 
