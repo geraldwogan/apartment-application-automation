@@ -31,10 +31,13 @@ Let's try the above approach. (https://www.thepythoncode.com/article/reading-ema
 
 I had to use a device specific password to bypass 2-step authentication: https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4OfScAjeZuVa9NdZwliKl6so5suPRhRH72dewBEk7PflLBL4RRRIV2KQFXKZ2ZcE_LerGCrREx4mV0_NPplTdFJQvEoOQ
 
+I did the original work with imaplib, but it looks like it could be done with a Gmail pi too: https://www.thepythoncode.com/article/use-gmail-api-in-python
+
 ## Form Completions
 
 Using Selenium for this? https://automatetheboringstuff.com/chapter11/#:~:text=Controlling%20the%20Browser%20with%20the%20selenium%20Module
 https://www.geeksforgeeks.org/automatically-filling-multiple-responses-into-a-google-form-with-selenium-and-python/
+https://selenium-python.readthedocs.io/locating-elements.html
 
 {
     venv\scripts\activate
