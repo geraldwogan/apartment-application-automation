@@ -12,21 +12,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 # account credentials
 json_file = open("secret.json")
 variables = json.load(json_file)
 json_file.close()
 
-password = variables["device_pass"]
-username = variables["username"]
-daft_pass = variables["daft_pass"]
-
 def getPropertyLink():
 
     # Login to Gmail account using secrets.json variables
     imap = imaplib.IMAP4_SSL("imap.gmail.com",993)
-    imap.login(username, password)
+    imap.login(variables["email"], variables["device_pass"])
 
     # Select folder to read from
     status, messages = imap.select("INBOX")
@@ -88,9 +83,7 @@ def completeForm(link):
 
     link= 'https://www.daft.ie/for-rent/apartment-bronze-en-suite-2022-23-tenancy-41-weeks-brickworks-brickfield-lane-dublin-8/2863979'
 
-    data = ['First Last', 'email@gmail.com', '0879999999', 'Test message']
-
-    # Web Driver specifically for chrome, download from here: https://chromedriver.chromium.org/downloads
+    # Selenium Web Driver specifically for chrome, download from here: https://chromedriver.chromium.org/downloads
     driver =  webdriver.Chrome('chromedriver.exe')
 
     # Open webpage
@@ -114,9 +107,8 @@ def completeForm(link):
 
     f = driver.find_elements(By.XPATH, '//input')
     time.sleep(.5)
-    print(f)
-    f[0].send_keys(username)
-    f[1].send_keys(daft_pass)
+    f[0].send_keys(variables["email"])
+    f[1].send_keys(variables["daft_pass"])
     time.sleep(.5)
     # e = driver.find_element(By.XPATH, '//input[contains(., "SIGN IN")]')
     e = driver.find_element(By.CLASS_NAME, 'login__button')
@@ -132,21 +124,11 @@ def completeForm(link):
 
     # Fill-out Form 
     f = driver.find_elements(By.XPATH, '//input')
-    time.sleep(.5)
-    print(f)
-
-    print("Element is visible? " + str(f[1].is_displayed()))
-
-    f[1].send_keys(data[0])
-    f[2].send_keys(username)
-    f[3].send_keys(data[2])
-    # f[4].send_keys(data[3])
-
+    f[1].send_keys(variables["first_last"])
+    f[2].send_keys(variables["email"])
+    f[3].send_keys(variables["phone_no"])
     t = driver.find_elements(By.XPATH, '//textarea')
-    t[0].send_keys(data[3])
-
-    # c = driver.find_elements(By.CLASS_NAME, '//div[contains(., "recaptcha-checkbox-border")]')
-    # c[0].send_keys(data[3])
+    t[0].send_keys(variables["pitch"])
 
     time.sleep(5)
 
@@ -154,5 +136,6 @@ def completeForm(link):
     # e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
     # e.click()
 
-completeForm('b')
+    return
 
+completeForm('b')
