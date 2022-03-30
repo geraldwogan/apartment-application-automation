@@ -4,8 +4,11 @@ The current aim of this project is to build a program that:
 1. fills out the initial application forms
 1. send the application form.
 
+## Initializing Git Version Control
+
+
 ## Creating a virtual environment
-Firstl,y I would like to create a virtual environment for this project.
+I would like to create a virtual environment for this project.
 
 Here is a link that I have followed to do this: https://towardsdatascience.com/virtual-environments-for-absolute-beginners-what-is-it-and-how-to-create-one-examples-a48da8982d4b
 
@@ -18,6 +21,9 @@ $ venv\scripts\activate
 (venv) $ deactivate
 $ pip freeze > requirements.txt
 $ pip install -r requirements.txt
+
+#### Run a program using your venv
+$ venv\Scripts\python.exe program.py
 
 ### Adding venv folder to .gitignore
 $ echo venv/ >> .gitignore
@@ -58,3 +64,4 @@ Installed the chrome driver for Selenium to work with chrome: https://chromedriv
 1. Wait for 5 minutes (?)
 1. Check email for make sure we have a new Daft Enquiry for the property.
 
+C:\Users\Gerald\Documents\Personal\Coding\Projects\apartment-application-automation\venv\Scripts\python.exe program.py

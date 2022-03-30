@@ -14,9 +14,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 # account credentials
-json_file = open("apartment-application-automation/secret.json")
+json_file = open("secret.json")
 variables = json.load(json_file)
 json_file.close()
+
 password = variables["device_pass"]
 username = variables["username"]
 daft_pass = variables["daft_pass"]
@@ -83,23 +84,20 @@ def getPropertyLink():
 
     return links[0]
 
+def completeForm(link):
 
+    link= 'https://www.daft.ie/for-rent/apartment-bronze-en-suite-2022-23-tenancy-41-weeks-brickworks-brickfield-lane-dublin-8/2863979'
 
-
-def formCompletion(link):
-
-    link= 'https://www.daft.ie/for-rent/apartment-whitworth-road-drumcondra-dublin-3/3723347'
-
-    data = ['Gerald Wogan', 'geraldwogan@gmail.com', '0879999999', 'Test message']
+    data = ['First Last', 'email@gmail.com', '0879999999', 'Test message']
 
     # Web Driver specifically for chrome, download from here: https://chromedriver.chromium.org/downloads
-    driver =  webdriver.Chrome('apartment-application-automation\chromedriver.exe')
+    driver =  webdriver.Chrome('chromedriver.exe')
 
     # Open webpage
     driver.get(link)
 
     # Wait for page to load
-    time.sleep(1)
+    time.sleep(.5)
 
     # Accept the cookie settings
     # e = driver.find_element(By.XPATH, '//button[contains(., "ACCEPT ALL"]')
@@ -108,54 +106,37 @@ def formCompletion(link):
 
     time.sleep(1)
 
-    # Sign-In
+#   Sign-in to bypass captcha
     e = driver.find_element(By.XPATH, '//a[contains(., "Sign in")]')
     e.click()
-    time.sleep(2)
+
+    time.sleep(.5)
 
     f = driver.find_elements(By.XPATH, '//input')
-    time.sleep(2)
+    time.sleep(.5)
     print(f)
     f[0].send_keys(username)
     f[1].send_keys(daft_pass)
-    time.sleep(2)
+    time.sleep(.5)
     # e = driver.find_element(By.XPATH, '//input[contains(., "SIGN IN")]')
     e = driver.find_element(By.CLASS_NAME, 'login__button')
 
     e.click()
-    time.sleep(2)
-
-
-    # r = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(f[0]))
-    # r.click()
-    # r.send_keys(data[0])
-    # for d, input in data, f:
-    print("Element is visible? " + str(f[1].is_displayed()))
-
-
-    driver.refresh()
-    time.sleep(2)
+    time.sleep(.5)
 
     # Click the Email Agent Button
-    e = driver.find_element(By.CLASS_NAME, '//button[contains(., "Email Agent")]')
+    e = driver.find_element(By.XPATH, '//button[contains(., "Email Agent")]')
     e.click()
 
     time.sleep(2)
-    # f = driver.find_elements(By.XPATH, '//img')
-    # f[0].click()
-    # Fill-out Form (TODO)
+
+    # Fill-out Form 
     f = driver.find_elements(By.XPATH, '//input')
-    time.sleep(2)
+    time.sleep(.5)
     print(f)
 
-    # r = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(f[0]))
-    # r.click()
-    # r.send_keys(data[0])
-    # for d, input in data, f:
     print("Element is visible? " + str(f[1].is_displayed()))
 
-    # f[0].click()
-    # f[0].send_keys(data[0])
     f[1].send_keys(data[0])
     f[2].send_keys(username)
     f[3].send_keys(data[2])
@@ -167,31 +148,11 @@ def formCompletion(link):
     # c = driver.find_elements(By.CLASS_NAME, '//div[contains(., "recaptcha-checkbox-border")]')
     # c[0].send_keys(data[3])
 
-
-
     time.sleep(5)
 
     # Send form
     # e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
     # e.click()
 
-
-
-    # Use Selenium to fill out web form
-
-    # 1. Open webpage
-
-    # 1. Click 'Email' button
-    # 1. Fill-out form
-    #     1. Full Name
-    #     1. Your email
-    #     1. Your phone number (Optional)
-    #     1. Message
-    #     1. Click 'Send' button
-    # 1. Close webpage
-    # 1. Wait for 5 minutes (?)
-    # 1. Check email for make sure we have a new Daft Enquiry for the property.
-
-
-formCompletion('b')
+completeForm('b')
 
