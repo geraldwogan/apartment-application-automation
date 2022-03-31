@@ -135,7 +135,8 @@ def completeForm(link):
     for part in variables["extra"].split('\n'):
         t[0].send_keys(part)
         ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER).perform()
-
+        
+    
     time.sleep(5)
 
     # Send form
