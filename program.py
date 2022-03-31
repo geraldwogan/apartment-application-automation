@@ -11,6 +11,8 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 # account credentials
 json_file = open("secret.json")
@@ -127,8 +129,12 @@ def completeForm(link):
     f[1].send_keys(variables["first_last"])
     f[2].send_keys(variables["email"])
     f[3].send_keys(variables["phone_no"])
+
+    # Multiline text entry require (SHIFT + ENTER) for a newline.
     t = driver.find_elements(By.XPATH, '//textarea')
-    t[0].send_keys(variables["pitch"])
+    for part in variables["extra"].split('\n'):
+        t[0].send_keys(part)
+        ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER).perform()
 
     time.sleep(5)
 
