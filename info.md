@@ -19,7 +19,7 @@ $ python -m venv C:\Users\Gerald\Documents\Personal\Coding\Projects\apartment-ap
 $ venv\scripts\activate
 (venv) $ pip install ...
 (venv) $ deactivate
-$ pip freeze > requirements.txt
+$ pip freeze > requirements.txt (Run this each time you install a new package)
 $ pip install -r requirements.txt
 
 #### Run a program using your venv
@@ -64,4 +64,12 @@ Installed the chrome driver for Selenium to work with chrome: https://chromedriv
 1. Wait for 5 minutes (?)
 1. Check email for make sure we have a new Daft Enquiry for the property.
 
+## Run this program.py
+
 C:\Users\Gerald\Documents\Personal\Coding\Projects\apartment-application-automation\venv\Scripts\python.exe program.py
+
+## PyTest
+https://www.tutorialspoint.com/pytest/pytest_quick_guide.htm
+
+### Running a PyTest
+$ pytest (this will run all test_.py files with test_ methods.)
