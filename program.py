@@ -1,16 +1,11 @@
-import imaplib 
 import email
-from email.header import decode_header
-import webbrowser
-import os
+import imaplib 
 import json
 import re
-from selenium import webdriver
-# from selenium import WebElement
 import time
+from email.header import decode_header
+from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
@@ -132,7 +127,7 @@ def completeForm(link):
 
     # Multiline text entry require (SHIFT + ENTER) for a newline.
     t = driver.find_elements(By.XPATH, '//textarea')
-    for part in variables["extra"].split('\n'):
+    for part in variables["pitch"].split('\n'):
         t[0].send_keys(part)
         ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER).perform()
         
