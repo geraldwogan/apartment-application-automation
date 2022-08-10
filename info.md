@@ -1,55 +1,24 @@
 The current aim of this project is to build a program that:
 1. listens for alerts/email
 1. navigates to the advertisement
-1. fills out the initial application forms
-1. send the application form.
-
-## Initializing Git Version Control
-
-
-## Creating a virtual environment
-I would like to create a virtual environment for this project.
-
-Here is a link that I have followed to do this: https://towardsdatascience.com/virtual-environments-for-absolute-beginners-what-is-it-and-how-to-create-one-examples-a48da8982d4b
-
-These are the commands necessary to setup a virtual environment:
-$ python --version (Python 3.7.3)
-$ pip install virtualenv
-$ python -m venv C:\Users\Gerald\Documents\Personal\Coding\Projects\apartment-application-automation/venv
-$ venv\scripts\activate
-(venv) $ pip install ...
-(venv) $ deactivate
-$ pip freeze > requirements.txt (Run this each time you install a new package)
-$ pip install -r requirements.txt
-
-#### Run a program using your venv
-$ venv\Scripts\python.exe program.py
-
-### Adding venv folder to .gitignore
-$ echo venv/ >> .gitignore
+1. fills out the initial application form
+1. sends the application form
 
 ## Listening to email account
-I want the program to run each time I get an email from the "Daft.ie Enquiry <noreply@daft.ie>" email account. This will be the first feature I work on.
+I want the program to run each time I get an email from the "Daft.ie Enquiry <noreply@daft.ie>" email account.
 
-The link I am currently reading specifies that their program reads a set amount of emails from their account when they run their program. I could use this solution and run the program manually whenever I get the notification. This would add some extra labour, but would release the need to constantly have the program running.
+The guide I am currently reading specifies that their program reads a set amount of emails from their account when they run their program. I could use this solution and run the program manually whenever I get the notification. This would add some extra labour, but would release the need to constantly have the program running.
 
 Let's try the above approach. (https://www.thepythoncode.com/article/reading-emails-in-python)
 
 I had to use a device specific password to bypass 2-step authentication: https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4OfScAjeZuVa9NdZwliKl6so5suPRhRH72dewBEk7PflLBL4RRRIV2KQFXKZ2ZcE_LerGCrREx4mV0_NPplTdFJQvEoOQ
 
-I did the original work with imaplib, but it looks like it could be done with a Gmail pi too: https://www.thepythoncode.com/article/use-gmail-api-in-python
+I did the original work with imaplib, but it looks like it could be done with a Gmail API too: https://www.thepythoncode.com/article/use-gmail-api-in-python
 
 ## Form Completions
-
 Using Selenium for this? https://automatetheboringstuff.com/chapter11/#:~:text=Controlling%20the%20Browser%20with%20the%20selenium%20Module
 https://www.geeksforgeeks.org/automatically-filling-multiple-responses-into-a-google-form-with-selenium-and-python/
 https://selenium-python.readthedocs.io/locating-elements.html
-
-{
-    venv\scripts\activate
-    pip install selenium
-    deactivate
-}
 
 Installed the chrome driver for Selenium to work with chrome: https://chromedriver.storage.googleapis.com/index.html?path=99.0.4844.51/
 1. Open webpage
@@ -65,11 +34,4 @@ Installed the chrome driver for Selenium to work with chrome: https://chromedriv
 1. Check email for make sure we have a new Daft Enquiry for the property.
 
 ## Run this program.py
-
 C:\Users\Gerald\Documents\Personal\Coding\Projects\apartment-application-automation\venv\Scripts\python.exe program.py
-
-## PyTest
-https://www.tutorialspoint.com/pytest/pytest_quick_guide.htm
-
-### Running a PyTest
-$ pytest (this will run all test_.py files with test_ methods.)
