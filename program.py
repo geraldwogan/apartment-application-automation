@@ -1,9 +1,6 @@
-import email
-import imaplib 
 import json
 import re
 import time
-from email.header import decode_header
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -14,76 +11,16 @@ json_file = open("secret.json")
 variables = json.load(json_file)
 json_file.close()
 
-def getPropertyLink():
-
-    # Login to Gmail account using secrets.json variables
-    imap = imaplib.IMAP4_SSL("imap.gmail.com",993)
-    imap.login(variables["email"], variables["device_pass"])
-
-    # Select folder to read from
-    status, messages = imap.select("INBOX")
-    # number of top emails to fetch
-    N = 2
-    # total number of emails
-    messages = int(messages[0])
-
-    for i in range(messages, messages-N, -1):
-        # fetch the email message by ID
-        res, msg = imap.fetch(str(i), "(RFC822)")
-        for response in msg:
-            if isinstance(response, tuple):
-                # parse a bytes email into a message object
-                msg = email.message_from_bytes(response[1])
-
-                # decode the email subject
-                subject, encoding = decode_header(msg["Subject"])[0]
-                print("Subject:", subject)
-
-                # decode email sender
-                From, encoding = decode_header(msg.get("From"))[0]
-                if isinstance(From, bytes):
-                    From = From.decode(encoding)
-                print("From:", From)     
-
-                # Only proceed if it is a Property Alert from Daft.ie
-                if From == '"Daft.ie Property Alert" <noreply@daft.ie>':# & From == 'Daft.ie':
-                    # if the email message is multipart
-                    if msg.is_multipart():
-                        # iterate over email parts
-                        for part in msg.walk():
-                            # extract content type of email
-                            content_type = part.get_content_type()
-                            content_disposition = str(part.get("Content-Disposition"))
-                            try:
-                                # get the email body
-                                body = part.get_payload(decode=True).decode()
-                            except:
-                                pass
-                            if content_type == "text/plain" and "attachment" not in content_disposition:
-                                # print text/plain emails and skip attachments
-                                if('View Property' in body):
-                                    # Find link using regex. The first link in the email will be for the property.
-                                    links = re.findall('\((.*?)\)', body)
-
-                                    # Open link in web browser
-                                    # webbrowser.open(links[0])
-
-                    print("="*100)
-
-    # close the connection and logout
-    imap.close()
-    imap.logout()
-
-    return links[0]
-
 def completeForm(link):
 
-    link= 'https://www.daft.ie/for-rent/apartment-bronze-en-suite-2022-23-tenancy-41-weeks-brickworks-brickfield-lane-dublin-8/2863979'
+    link= 'https://www.daft.ie/share/9-sarsfield-quay-apartments-liffey-street-west-d-stoneybatter-dublin-7/5587064'
 
     # Selenium Web Driver specifically for chrome, download from here: https://chromedriver.chromium.org/downloads
-    driver =  webdriver.Chrome('chromedriver.exe')
+    service = webdriver.ChromeService('chromedriver.exe')
+    driver = webdriver.Chrome(service=service)
 
     # Open webpage
+    # driver = webdriver.Chrome()
     driver.get(link)
 
     # Wait for page to load
@@ -114,25 +51,26 @@ def completeForm(link):
     time.sleep(.5)
 
     # Click the Email Agent Button
-    e = driver.find_element(By.XPATH, '//button[contains(., "Email Agent")]')
+    e = driver.find_element(By.XPATH, '//button[contains(., "Email")]')
     e.click()
 
-    time.sleep(2)
+    time.sleep(4)
 
     # Fill-out Form 
-    f = driver.find_elements(By.XPATH, '//input')
-    f[1].send_keys(variables["first_last"])
+    f = driver.find_elements(By.XPATH, "//*[contains(@id,'keyword')]")
+
+    f[0].send_keys(variables["first_name"])
+    f[1].send_keys(variables["last_name"])
     f[2].send_keys(variables["email"])
-    f[3].send_keys(variables["phone_no"])
+    f[3].send_keys(variables["phone_number"])
 
     # Multiline text entry require (SHIFT + ENTER) for a newline.
     t = driver.find_elements(By.XPATH, '//textarea')
     for part in variables["pitch"].split('\n'):
-        t[0].send_keys(part)
+        t[1].send_keys(part)
         ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER).perform()
         
-    
-    time.sleep(5)
+    time.sleep(10)
 
     # Send form
     # e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
