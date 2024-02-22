@@ -13,11 +13,11 @@ json_file.close()
 
 def completeForm(link):
 
-    link= 'https://www.daft.ie/share/9-sarsfield-quay-apartments-liffey-street-west-d-stoneybatter-dublin-7/5587064'
+    link= 'https://www.daft.ie/share/enniskerry-road-phibsborough-dublin-7/5592566'
 
     # Selenium Web Driver specifically for chrome, download from here: https://chromedriver.chromium.org/downloads
-    service = webdriver.ChromeService('chromedriver.exe')
-    driver = webdriver.Chrome(service=service)
+    # service = webdriver.ChromeService('chromedriver.exe')
+    driver = webdriver.Chrome('chromedriver.exe')
 
     # Open webpage
     # driver = webdriver.Chrome()
@@ -70,12 +70,28 @@ def completeForm(link):
         t[1].send_keys(part)
         ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.SHIFT).key_up(Keys.ENTER).perform()
         
-    time.sleep(10)
+    time.sleep(5)
 
     # Send form
-    # e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
-    # e.click()
+    e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
+    e.click()
+
+    time.sleep(5)
 
     return
 
 completeForm('b')
+
+# from fastapi import FastAPI
+# import logging
+
+# app = FastAPI()
+
+# @app.get("/share")
+# async def share():
+#     logging.info("Attempting to Email for shared room")
+#     completeForm('b')
+#     return {"message": "Hello World"}
+
+# if __name__ == '__main__':
+#     uvicorn.run('main:app', port=8000, reload=True)

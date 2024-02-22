@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: .
+    container_name: aaa
+    environment:
+      PORT: 8000
+    ports:
+      - '8000:8000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: "no"
+  selenium:
+    image: selenium/standalone-chrome
+    ports:
+    - 4444:4444
