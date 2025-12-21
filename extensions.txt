@@ -1,0 +1,57 @@
+.gitignore 
+.py 
+.exe 
+.yml 
+ECHO is on.
+.py 
+.md 
+.md 
+.txt 
+.json 
+.json 
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+.sample 
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+ECHO is on.
+.idx 
+.pack 
+.rev 
+ECHO is on.
+ECHO is on.
+ECHO is on.
+.py 
+.pyc 

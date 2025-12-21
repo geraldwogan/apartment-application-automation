@@ -13,7 +13,7 @@ json_file.close()
 
 def completeForm(link):
 
-    link= 'https://www.daft.ie/share/enniskerry-road-phibsborough-dublin-7/5592566'
+    link= 'https://www.daft.ie/share/leinster-street-north-phibsborough-dublin-7/5593289'
 
     # Selenium Web Driver specifically for chrome, download from here: https://chromedriver.chromium.org/downloads
     # service = webdriver.ChromeService('chromedriver.exe')
@@ -73,8 +73,8 @@ def completeForm(link):
     time.sleep(5)
 
     # Send form
-    e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
-    e.click()
+    # e = driver.find_element(By.XPATH, '//button[contains(., "Send")]')
+    # e.click()
 
     time.sleep(5)
 
